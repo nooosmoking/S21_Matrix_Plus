@@ -1,7 +1,5 @@
 #include "test.h"
 
-
-
 // TEST(S21MatrixTest, SumMatrixTest) {
 //   S21Matrix a(2, 2);
 //   S21Matrix b(2, 2);
@@ -112,6 +110,11 @@
 //   S21Matrix B;
 //   EXPECT_THROW(A == B, std::length_error);
 // }
+
+double GetRand(double min, double max) {
+  double val = (double)rand() / RAND_MAX;
+  return min + val * (max - min);
+}
 
 int main(int argc, char *argv[]) {
   testing::InitGoogleTest(&argc, argv);

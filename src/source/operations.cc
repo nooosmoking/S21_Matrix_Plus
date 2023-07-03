@@ -8,7 +8,7 @@ bool S21Matrix::EqMatrix(const S21Matrix& other) {
   if (is_equal) {
     for (int i = 0; i < other.GetRows() && is_equal; i++) {
       for (int j = 0; j < other.GetCols() && is_equal; j++) {
-        is_equal = fabs(this->matrix_[i][j] - other.matrix_[i][j]) < 1e-7;
+        is_equal = this->matrix_[i][j] == other.matrix_[i][j];
       }
     }
   }

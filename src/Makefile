@@ -1,13 +1,13 @@
-GCC = gcc
+GCC = g++
 LDFLAGS = -c 
 SOURCE := $(shell find ./source  -iname "*.cc" )
 TEST_SOURCE := $(shell find ./tests  -iname "*.cc" )
 HEADER_SOURCE := $(shell find . -iname "*.h" )
 
 ifeq ($(shell uname -s),Darwin)
-	TEST_FLAGS  = -lgtest --coverage -lstdc++
+	TEST_FLAGS  = -g -lstdc++ -std=c++17 --coverage
 else
-	TEST_FLAGS  = -lgtest -lstdc++ -std=c++17 --coverage -lsubunit  
+	TEST_FLAGS  = -g -lstdc++ -std=c++17 --coverage -lsubunit  
 endif
 
 ERROR_FLAGS  =  -Wextra -Wall -Werror -Wuninitialized -Winit-self -Wmaybe-uninitialized -fsanitize=address
@@ -20,7 +20,7 @@ s21_matrix_oop.a: clean
 	ranlib $@
 
 test: ${SOURCE} ${TEST_SOURCE} ${HEADER_SOURCE}
-	$(GCC) $(TEST_FLAGS)  $^ -o $@  'pkg-config --cflags --libs gtest'  -I /usr/include/c++/12 -L /usr/local/lib 
+	$(GCC) $(TEST_FLAGS)  $^ -o $@  -lgtest -lpthread -lrt -lsubunit 
 	./$@
 
 gcov_report: test
@@ -34,7 +34,7 @@ leaks: test
 cppcheck: $(SOURCE) $(TEST_SOURCE)
 	cppcheck $^;
 
-format: ${SOURCE} ${HEADER_SOURCE}
+format: ${SOURCE} ${HEADER_SOURCE} ${TEST_SOURCE} 
 	cp .././materials/linters/.clang-format .
 	clang-format -i -style=google $^;
 	rm .clang-format

@@ -9,6 +9,7 @@ bool S21Matrix::IsMatrix() const {
 }
 
 bool S21Matrix::IsSquare() const { return this->GetCols() == this->GetRows(); }
+
 bool S21Matrix::IsEqSize(const S21Matrix& other) const {
   return (this->GetCols() == other.GetCols()) &&
          (this->GetRows() == other.GetRows());

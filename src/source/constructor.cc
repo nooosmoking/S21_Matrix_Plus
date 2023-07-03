@@ -37,8 +37,8 @@ void S21Matrix::InitMatrix(int rows, int cols) {
       throw bad_alloc();
     }
   }
-  this->SetCols(cols);
-  this->SetRows(rows);
+  this->cols_ = cols;
+  this->rows_ = rows;
 
   for (int i = 0; i < this->rows_; i++) {
     for (int j = 0; j < this->cols_; j++) this->matrix_[i][j] = 0;

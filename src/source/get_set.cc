@@ -10,7 +10,6 @@ double** S21Matrix::GetMatrix() const { return this->matrix_; }
 void S21Matrix::SetRows(int size) {
   if (size < 1)
     throw invalid_argument("Size of raws should be a positive number!");
-
   S21Matrix tmp(size, this->GetCols());
   for (int i = 0; i < tmp.GetRows(); i++) {
     for (int j = 0; j < tmp.GetCols(); j++) {
@@ -26,7 +25,6 @@ void S21Matrix::SetRows(int size) {
 void S21Matrix::SetCols(int size) {
   if (size < 1)
     throw invalid_argument("Size of columns should be a positive number!");
-
   S21Matrix tmp(this->GetRows(), size);
   for (int i = 0; i < tmp.GetRows(); i++) {
     for (int j = 0; j < tmp.GetCols(); j++) {

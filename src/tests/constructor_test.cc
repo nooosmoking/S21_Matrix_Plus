@@ -2,6 +2,7 @@
 
 TEST(Constructor, DefaultConstructor) {
   S21Matrix matrix;
+
   ASSERT_EQ(matrix.GetRows(), 2);
   ASSERT_EQ(matrix.GetCols(), 2);
   ASSERT_NE(matrix.GetMatrix(), nullptr);
@@ -12,9 +13,9 @@ TEST(Constructor, DefaultConstructor) {
 }
 
 TEST(Constructor, NormalConstructor) {
-  S21Matrix matrix(10, 10);
+  S21Matrix matrix(10, 11);
   ASSERT_EQ(matrix.GetRows(), 10);
-  ASSERT_EQ(matrix.GetCols(), 10);
+  ASSERT_EQ(matrix.GetCols(), 11);
   ASSERT_NE(matrix.GetMatrix(), nullptr);
   for (int i = 0; i < matrix.GetRows(); i++) {
     for (int j = 0; j < matrix.GetCols(); j++)
@@ -34,8 +35,7 @@ TEST(Constructor, MoveConstructor) {
   EXPECT_EQ(5, B.GetCols());
   EXPECT_NE(nullptr, B.GetMatrix());
   for (int i = 0; i < B.GetRows(); i++) {
-      for (int j = 0; j < B.GetCols(); j++)
-        ASSERT_EQ(B.GetMatrix()[i][j], 0);
+    for (int j = 0; j < B.GetCols(); j++) ASSERT_EQ(B.GetMatrix()[i][j], 0);
   }
   EXPECT_EQ(0, A.GetRows());
   EXPECT_EQ(0, A.GetCols());
@@ -48,9 +48,7 @@ TEST(Constructor, CopyConstructor) {
   EXPECT_EQ(3, B.GetRows());
   EXPECT_EQ(4, B.GetCols());
   for (int i = 0; i < B.GetRows(); i++) {
-      for (int j = 0; j < B.GetCols(); j++)
-        ASSERT_EQ(B.GetMatrix()[i][j], 0);
+    for (int j = 0; j < B.GetCols(); j++) ASSERT_EQ(B.GetMatrix()[i][j], 0);
   }
   EXPECT_EQ(1, A == B);
 }
-
